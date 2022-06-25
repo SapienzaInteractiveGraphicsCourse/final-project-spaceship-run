@@ -1,9 +1,10 @@
 class MeshObject extends GameObject{
     constructor(){
-        super()
-        this._mesh = new THREE.Mesh();
+        super();
     }
 
-    get mesh() {return this._mesh}
-    set mesh(mesh){this._mesh = mesh}
+    get mesh() {return this._mesh;}
+    set mesh(mesh){
+        super.add(mesh);
+    }
 }
