@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import OBJLoader from 'OBJLoader'
+import {OBJLoader} from 'OBJLoader'
 import GameObject from "./GameObject.js";
 class MeshObject extends GameObject{
     constructor(){
@@ -9,19 +9,23 @@ class MeshObject extends GameObject{
 
     get mesh() {return this._mesh;}
     set mesh(mesh){
+        super.clear()
         super.add(mesh);
         this._mesh = mesh;
     }
 
-    loadMesh(meshFile,filetype){
-        const loader = new THREE.OBJLoader();
+    loadMesh(meshFile,filetype,parent=this){
+        const loader = new OBJLoader();
 
         loader.load(
             meshFile,
             function(object){
-                this.mesh(object)
+                parent.loaded(object)
             }
         )
+    }
+    loaded(object){
+        this.mesh = object
     }
 }
 
