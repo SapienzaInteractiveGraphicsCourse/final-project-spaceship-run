@@ -16,8 +16,8 @@ var level = new LevelGenerator();
 level.generateLevel(1);
 function animate() {
     requestAnimationFrame( animate );
-    renderer.render(level.level,camera);
-    scene.children[0].rotation.y += 0.01;
+    renderer.render(scene,camera);
+    scene.getObjectByName("cube").rotation.y += 0.01;
 };
 
 animate();

@@ -14,18 +14,16 @@ class MeshObject extends GameObject{
         this._mesh = mesh;
     }
 
+    //TODO 
     loadMesh(meshFile,filetype,parent=this){
         const loader = new OBJLoader();
 
         loader.load(
             meshFile,
-            function(object){
-                parent.loaded(object)
+            function(object){//object is a Object3D
+                parent.mesh = object;
             }
         )
-    }
-    loaded(object){
-        this.mesh = object
     }
 }
 

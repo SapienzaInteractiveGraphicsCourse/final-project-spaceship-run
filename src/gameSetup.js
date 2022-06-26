@@ -3,10 +3,10 @@ import MeshObject from "./MeshObject.js";
 import LevelGenerator from "./levelGeneration.js";
 
 function sceneSetup(scene,camera){
-    // var object = new MeshObject();
-    // object.name = "cube";
-    // scene.add(object);
-    // object.loadMesh("../resources/meshes/FinalBaseMesh.obj","obj");
+    var object = new MeshObject();
+    object.name = "cube";
+    scene.add(object);
+    object.loadMesh("../resources/meshes/FinalBaseMesh.obj","obj");
    
 
     const light = new THREE.AmbientLight(0xFFFFFF);
@@ -19,7 +19,6 @@ function sceneSetup(scene,camera){
     scene = level.level;
     //scene.add(light)
     camera.position.z =30;
-    camera.position.y=10;
 }
 
 export default sceneSetup
