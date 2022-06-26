@@ -5,7 +5,7 @@ function sceneSetup(scene,camera){
     const geometry = new THREE.BoxGeometry(1,1,1);
     const material = new THREE.MeshStandardMaterial({color:0xf020ff});
     object.mesh = new THREE.Mesh(geometry, material);
-
+    object.loadMesh("C:\Users\Anton\Desktop\UNIVERSITA\Integrated Graphics\Project\SpaceshipRun\resources\meshes\FinalBaseMesh.obj","obj")
 
     const light = new THREE.AmbientLight(0xFFFFFF);
     const dirLight = new THREE.DirectionalLight(0xffffff,0.5);
