@@ -135,10 +135,13 @@ function moveMeshAlongAxis(mesh, axis= 'z', velocity= .1, isInstanced=false, res
                 mesh_matrix.decompose(pos, initial_quat, scale)
                 pos.x += velocity
                 //check if the position is grater than the limit position
-                if (pos.x > limit_position)
+                if (respawn)
                 {
-                    //reset the position to the respawn position
-                    pos.x = respawn_position
+                    if (pos.x > limit_position)
+                    {
+                        //reset the position to the respawn position
+                        pos.x = respawn_position
+                    }
                 }
                 mesh_matrix.compose(pos, initial_quat, scale)
                 mesh.setMatrixAt(index, mesh_matrix)
@@ -153,9 +156,12 @@ function moveMeshAlongAxis(mesh, axis= 'z', velocity= .1, isInstanced=false, res
                 mesh_matrix.decompose(pos, initial_quat, scale)
                 pos.y += velocity
                 //check if the position is grater than the limit position
-                if (pos.y > limit_position)
+                if (respawn)
                 {
-                    pos.y = respawn_position
+                    if (pos.y > limit_position)
+                    {
+                        pos.y = respawn_position
+                    }
                 }
                 mesh_matrix.compose(pos, initial_quat, scale)
                 mesh.setMatrixAt(index, mesh_matrix)
@@ -171,9 +177,12 @@ function moveMeshAlongAxis(mesh, axis= 'z', velocity= .1, isInstanced=false, res
                 mesh_matrix.decompose(pos, initial_quat, scale)
                 pos.z += velocity
                 //check if the position is grater than the limit position
+                if (respawn)
+                {
                 if (pos.z > limit_position)
                 {
                     pos.z = respawn_position
+                }
                 }
                 mesh_matrix.compose(pos, initial_quat, scale)
                 mesh.setMatrixAt(index, mesh_matrix)
