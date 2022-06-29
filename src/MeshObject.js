@@ -21,7 +21,7 @@ class MeshObject extends GameObject{
         loader.load(
             meshFile,
             function(object){//object is a Object3D
-                parent.mesh = object;
+                parent.mesh = object.getObjectByName("Group1");
             }
         )
     }
