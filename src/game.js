@@ -13,7 +13,13 @@ document.body.appendChild(renderer.domElement);
 sceneSetup(scene,camera);
 
 var level = new LevelGenerator();
-level.generateLevel(1);
+level.generateLevel(10);
+
+
+// const dirLight = new THREE.DirectionalLight(0xffffff,1);
+// dirLight.position.set(-300,0,300)
+// level.level.add(dirLight);
+// dirLight.castShadow = true;
 function animate() {
     requestAnimationFrame( animate );
     renderer.render(scene,camera);

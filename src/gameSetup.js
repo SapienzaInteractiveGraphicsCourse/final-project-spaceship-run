@@ -17,9 +17,9 @@ function sceneSetup(scene,camera){
     
     var level = new LevelGenerator();
     level.generateLevel(1);
-    scene = level.level;
+    scene.copy(level.level,true);
     //scene.add(light)
-    camera.position.z =100;
+    camera.position.z =0;
 }
 
 export default sceneSetup
