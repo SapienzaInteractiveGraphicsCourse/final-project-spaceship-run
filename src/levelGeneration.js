@@ -6,7 +6,7 @@ class LevelGenerator{
     }
 
     generateLevel(difficulty){
-        var length = randomLength(difficulty*5,difficulty*5+5);
+        var length = randomLength(difficulty*2,difficulty*2+2);
         var direction = new THREE.Vector3(0,0,-1);
         var pos = direction.clone();
         pos.multiplyScalar(20)

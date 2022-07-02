@@ -16,7 +16,7 @@ function sceneSetup(scene,camera){
     scene.add(dirLight)
     
     var level = new LevelGenerator();
-    level.generateLevel(1);
+    level.generateLevel(5);
     scene.copy(level.level,true);
     //scene.add(light)
     camera.position.z =0;
