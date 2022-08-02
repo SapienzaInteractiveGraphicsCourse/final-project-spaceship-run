@@ -1,7 +1,19 @@
 import * as THREE from "three";
-class GameObject extends THREE.Object3D {
+import { CommandCategories } from "./Command.js";
+class GameObject extends THREE.Object3D{
     constructor(){
-        super()
+        super();
+        this.category = CommandCategories.None;
+    }
+
+    onCommand(command,deltaTime){
+        if(command.category == this.category){
+            command.action(this,deltaTime)
+        }
+
+        this.children.array.forEach(element => {
+            element.onCommand(command,deltaTime);
+        });
     }
 }
 

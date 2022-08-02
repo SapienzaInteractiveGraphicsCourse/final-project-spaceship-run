@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { CommandQueue } from "./Command.js";
 import GameObject from "./GameObject.js";
 import sceneSetup from "./gameSetup.js";
 import LevelGenerator from "./levelGeneration.js";
@@ -12,6 +13,7 @@ class Game{
         this.renderer.setSize(window.innerWidth,window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
 
+        this.commandQueue = new CommandQueue;
         sceneSetup(this.scene,this.camera);
     }
 
@@ -19,14 +21,21 @@ class Game{
     // dirLight.position.set(-300,0,300)
     // level.level.add(dirLight);
     // dirLight.castShadow = true;
-    animate(time) {
-        time+=0.001;
+    animate(deltaTime) {
+        var now = Date.now();
+        deltaTime=now-LastUpdate;
+        LastUpdate = now;
         requestAnimationFrame( this.animate.bind(this) );
 
         if(resizeRendererToDisplaySize(this.renderer)){
             const canvas = this.renderer.domElement;
             this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
             this.camera.updateProjectionMatrix();
+        }
+        while(!this.commandQueue.isEmpty()){
+            this.scene.children.array.forEach(element => {
+                element.OnCommand(this.commandQueue.pop(), deltaTime)
+            });
         }
         this.renderer.render(this.scene,this.camera);
         this.scene.getObjectByName("cube").rotation.y += 0.01;
@@ -46,4 +55,6 @@ function resizeRendererToDisplaySize(renderer) {
   }
 
 var game = new Game();
+var LastUpdate = Date.now();
+var now = LastUpdate;
 game.animate(0);
