@@ -14,7 +14,7 @@ class Game{
         document.body.appendChild(this.renderer.domElement);
 
         this.commandQueue = new CommandQueue;
-        sceneSetup(this.scene,this.camera);
+        sceneSetup(this.scene,this.camera,this.renderer.domElement);
     }
 
     // const dirLight = new THREE.DirectionalLight(0xffffff,1);
@@ -26,19 +26,19 @@ class Game{
         deltaTime=now-LastUpdate;
         LastUpdate = now;
         requestAnimationFrame( this.animate.bind(this) );
-
+        this.scene.getObjectByName("ship").controls.update(deltaTime);
         if(resizeRendererToDisplaySize(this.renderer)){
             const canvas = this.renderer.domElement;
             this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
             this.camera.updateProjectionMatrix();
         }
+        
         while(!this.commandQueue.isEmpty()){
             this.scene.children.array.forEach(element => {
                 element.OnCommand(this.commandQueue.pop(), deltaTime)
             });
         }
         this.renderer.render(this.scene,this.camera);
-        this.scene.getObjectByName("cube").rotation.y += 0.01;
     };
 
 }
