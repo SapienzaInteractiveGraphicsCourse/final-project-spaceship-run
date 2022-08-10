@@ -7,6 +7,8 @@ class Ship extends THREE.Object3D{
         this.shipModel = new THREE.Object3D();
         this.controls = new FlyControls(this,domElement);
         this.controls.dragToLook = true;
+        this.add(this.camera)
+        this.add(this.shipModel)
     }
 }
 

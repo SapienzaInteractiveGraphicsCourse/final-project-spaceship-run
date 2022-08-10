@@ -23,7 +23,7 @@ class Game{
     // dirLight.castShadow = true;
     animate(deltaTime) {
         var now = Date.now();
-        deltaTime=now-LastUpdate;
+        deltaTime=(now-LastUpdate)/1000;
         LastUpdate = now;
         requestAnimationFrame( this.animate.bind(this) );
         this.scene.getObjectByName("ship").controls.update(deltaTime);
