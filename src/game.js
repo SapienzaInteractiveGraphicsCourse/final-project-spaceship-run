@@ -14,11 +14,11 @@ class Game{
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth,window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
-        this.cameraControls = new FlyControls(this.camera,this.renderer.domElement);
-        this.cameraControls.dragToLook = true;
-        this.cameraControls.movementSpeed = 10;
-        this.cameraControls.rollSpeed = 0.5;
-        this.commandQueue = new CommandQueue;
+        // this.cameraControls = new FlyControls(this.camera,this.renderer.domElement);
+        // this.cameraControls.dragToLook = true;
+        // this.cameraControls.movementSpeed = 10;
+        // this.cameraControls.rollSpeed = 0.5;
+        // this.commandQueue = new CommandQueue;
         sceneSetup(this.scene,this.camera,this.renderer.domElement);
     }
 
@@ -31,8 +31,8 @@ class Game{
         deltaTime=(now-LastUpdate)/1000;
         LastUpdate = now;
         requestAnimationFrame( this.animate.bind(this) );
-        //this.scene.getObjectByName("ship").controls.update(deltaTime);
-        this.cameraControls.update(deltaTime);
+        this.scene.getObjectByName("ship").controls.update(deltaTime);
+        //this.cameraControls.update(deltaTime);
         if(resizeRendererToDisplaySize(this.renderer)){
             const canvas = this.renderer.domElement;
             this.camera.aspect = canvas.clientWidth / canvas.clientHeight;

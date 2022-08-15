@@ -16,9 +16,9 @@ function sceneSetup(scene,camera, domElement){
     dirLight.position.set(1,1,1);
     scene.add(dirLight)
     
-    var level = new LevelGenerator();
+    var level = new LevelGenerator(scene);
     level.generateLevel(5);
-    scene.copy(level.level,true);
+    //scene.copy(level.level,true);
     //scene.add(light)
     camera.position.z =0;
 }

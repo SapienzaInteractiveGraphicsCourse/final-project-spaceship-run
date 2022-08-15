@@ -6,19 +6,25 @@ class Ship extends THREE.Object3D{
         super();
         this.name = "ship";
         this.camera = camera;
+
         this.shipModel = new MeshObject();
         this.shipModel.loadMesh("../resources/meshes/space_ship_final.obj");
-        const scale = 1;
+        const scale = 1/10;
         this.shipModel.scale.set(scale,scale,scale);
-        this.shipModel.translateZ(100);
+        this.shipModel.translateZ(-10);
+        this.shipModel.translateY(-5)
+        this.shipModel.rotateY(Math.PI);
+
         this.controls = new FlyControls(this,domElement);
         this.controls.dragToLook = true;
-        this.controls.movementSpeed = 10;
+        this.controls.movementSpeed = 50;
         this.controls.rollSpeed = 0.5;
+        this.controls.autoForward = true;
+
         this.add(this.camera)
         this.add(this.shipModel)
 
-        this.camera.translateOnAxis(new THREE.Vector3(0,0,1),-10);
+        this.camera.position.add(new THREE.Vector3(0,0,0))
     }
 }
 

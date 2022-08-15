@@ -1,12 +1,16 @@
 import MeshObject from "./MeshObject.js"
 import * as THREE from "three";
 class LevelGenerator{
-    constructor(){
-        this.level = new THREE.Scene();
+    constructor(scene){
+        if(scene == null) this.level = new THREE.Scene();
+        this.level = scene;
     }
 
     generateLevel(difficulty){
-        var length = randomLength(difficulty*2,difficulty*2+2);
+        const length = randomLength(difficulty*2,difficulty*2+2);
+        const checkPointDistance = degreeToRad(100);
+        const checkpointAngle = 1;
+
         var direction = new THREE.Vector3(0,0,-1);
         var pos = direction.clone();
         pos.multiplyScalar(20)
@@ -16,17 +20,19 @@ class LevelGenerator{
             const geometry = new THREE.SphereGeometry(1,32,11);
             const material = new THREE.MeshStandardMaterial({color:0xffff00});
             checkpoint.mesh = new THREE.Mesh(geometry,material);
+
             this.level.add(checkpoint);
             checkpoint.position.set(pos.x,pos.y,pos.z);
 
             var newDir = new THREE.Vector3();
             newDir.randomDirection();
-            while(direction.dot(newDir)<Math.cos(degreeToRad(30))){
+            var angle = direction.dot(newDir);
+            while(angle<checkpointAngle && angle >=0){
                 newDir.randomDirection();
             }
             direction.add(newDir);
             pos = direction.clone();
-            pos.multiplyScalar(20);
+            pos.multiplyScalar(checkPointDistance);
         }
     }
 }
@@ -38,5 +44,4 @@ function randomLength(min,max){
 function degreeToRad(degree){
     return degree*(Math.PI/180);
 }
-
 export default LevelGenerator
