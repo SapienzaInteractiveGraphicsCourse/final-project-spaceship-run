@@ -4,6 +4,13 @@ import { CommandQueue } from "./Command.js";
 import GameObject from "./GameObject.js";
 import sceneSetup from "./gameSetup.js";
 import LevelGenerator from "./levelGeneration.js";
+// var THREE;
+// (async () =>{THREE=import("three")});
+// import("FlyControls");
+// import("./Command.js");
+// import("./GameObject.js");
+// import("./gameSetup.js");
+// import("./levelGeneration.js");
 
 class Game{
     constructor(){
