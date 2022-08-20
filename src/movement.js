@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-import { Vector3 } from 'three'
 
 function rotateOnAxis(mesh, axis = 'x', angular_velocity, isInstanced = true )
 {

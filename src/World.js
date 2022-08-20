@@ -1,6 +1,6 @@
-import { CommandCategories, CommandQueue } from "./Command";
+// import { CommandCategories, CommandQueue } from "./Command";
 import * as THREE from "three"
-import GameObject from "./GameObject";
+// import GameObject from "./GameObject";
 class World extends GameObject{
     constructor(){
         this.scene = new THREE.Scene();

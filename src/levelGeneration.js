@@ -1,5 +1,6 @@
 import MeshObject from "./MeshObject.js"
 import * as THREE from "three";
+
 class LevelGenerator{
     constructor(scene){
         if(scene == null) this.level = new THREE.Scene();
@@ -8,8 +9,8 @@ class LevelGenerator{
 
     generateLevel(difficulty){
         const length = randomLength(difficulty*2,difficulty*2+2);
-        const checkPointDistance = degreeToRad(100);
-        const checkpointAngle = 1;
+        const checkPointDistance = 100;
+        const checkpointAngle = Math.cos(degreeToRad(45));
 
         var direction = new THREE.Vector3(0,0,-1);
         var pos = direction.clone();
@@ -27,8 +28,9 @@ class LevelGenerator{
             var newDir = new THREE.Vector3();
             newDir.randomDirection();
             var angle = direction.dot(newDir);
-            while(angle<checkpointAngle && angle >=0){
+            while(angle>checkpointAngle){
                 newDir.randomDirection();
+                angle = direction.dot(newDir);
             }
             direction.add(newDir);
             pos = direction.clone();
