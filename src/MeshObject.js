@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import {OBJLoader} from 'OBJLoader'
+import {GLTFLoader} from 'GLTFLoader'
 import GameObject from "./GameObject.js";
 class MeshObject extends GameObject{
     constructor(){
@@ -16,13 +17,13 @@ class MeshObject extends GameObject{
 
     //TODO 
     loadMesh(meshFile,filetype,parent=this){
-        const loader = new OBJLoader();
+        const loader = new GLTFLoader();
 
         loader.load(
             meshFile,
             function(object){//object is a Object3D
                 //parent.mesh = object.getObjectByName("Group1");
-                parent.add(object);
+                parent.add(object.scene.children[0]);
             }
         )
     }

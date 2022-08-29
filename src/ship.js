@@ -8,8 +8,8 @@ class Ship extends THREE.Object3D{
         this.camera = camera;
 
         this.shipModel = new MeshObject();
-        this.shipModel.loadMesh("../resources/meshes/space_ship_final.obj");
-        const scale = 1/10;
+        this.shipModel.loadMesh("../resources/meshes/spaceship.glb");
+        const scale = 1;
         this.shipModel.scale.set(scale,scale,scale);
         this.shipModel.translateZ(-10);
         this.shipModel.translateY(-5)

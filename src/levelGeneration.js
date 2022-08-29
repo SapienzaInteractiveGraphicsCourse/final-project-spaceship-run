@@ -10,7 +10,7 @@ class LevelGenerator{
     generateLevel(difficulty){
         const length = randomLength(difficulty*2,difficulty*2+2);
         const checkPointDistance = 100;
-        const checkpointAngle = Math.cos(degreeToRad(45));
+        const checkpointAngle = Math.cos(degreeToRad(10));
 
         var direction = new THREE.Vector3(0,0,-1);
         var pos = direction.clone();
@@ -28,7 +28,7 @@ class LevelGenerator{
             var newDir = new THREE.Vector3();
             newDir.randomDirection();
             var angle = direction.dot(newDir);
-            while(angle>checkpointAngle){
+            while(!(angle<checkpointAngle && angle>=0)){
                 newDir.randomDirection();
                 angle = direction.dot(newDir);
             }
