@@ -26,6 +26,32 @@ class Ship extends THREE.Object3D{
 
         this.camera.position.add(new THREE.Vector3(0,0,0))
     }
-}
 
+    vectorThrust(oldDir){
+        var forward = new THREE.Vector3(0,0,1)
+        this.getWorldDirection(forward)
+        // const shipQuaternion = new THREE.Quaternion()
+        // this.getWorldQuaternion(shipQuaternion)
+        // oldDir.applyQuaternion(shipQuaternion)
+        const leftThruster = this.getObjectByName("thruster_connection_left");
+        const rightThruster = this.getObjectByName("thruster_connection_right");
+        const shipRotation = this.children[1]
+        
+        oldDir.sub(forward);
+        oldDir = this.worldToLocal(oldDir)
+        var vertical = oldDir.y;
+        var orizontal = oldDir.x;
+        //var angle=oldDir.dot(this.up);
+
+        
+        const scale = 100;
+        shipRotation.setRotationFromAxisAngle(new THREE.Vector3(0,0,1),-orizontal*scale)
+        leftThruster.setRotationFromAxisAngle(new THREE.Vector3(1,0,0),(vertical-orizontal)*scale)
+        rightThruster.setRotationFromAxisAngle(new THREE.Vector3(1,0,0),(vertical+orizontal)*scale)
+        
+    }
+}
+function degreeToRad(degree){
+    return degree*(Math.PI/180);
+}
 export default Ship;

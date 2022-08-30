@@ -10,12 +10,17 @@ class Game{
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth,window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
+
         // this.cameraControls = new FlyControls(this.camera,this.renderer.domElement);
         // this.cameraControls.dragToLook = true;
         // this.cameraControls.movementSpeed = 10;
         // this.cameraControls.rollSpeed = 0.5;
         // this.commandQueue = new CommandQueue;
         sceneSetup(this.scene,this.camera,this.renderer.domElement);
+
+        this.ship= this.scene.getObjectByName("ship");
+        this.oldDir=new THREE.Vector3();
+        this.ship.getWorldDirection(this.oldDir);
     }
 
     // const dirLight = new THREE.DirectionalLight(0xffffff,1);
@@ -34,7 +39,8 @@ class Game{
             this.camera.aspect = canvas.clientWidth / canvas.clientHeight;
             this.camera.updateProjectionMatrix();
         }
-        
+        this.ship.vectorThrust(this.oldDir);
+        this.ship.getWorldDirection(this.oldDir);
         this.renderer.render(this.scene,this.camera);
     };
 
