@@ -34,5 +34,4 @@ async function sceneSetup(scene,camera, domElement){
     //scene.add(light)
     camera.position.z =0;
 }
-
 export default sceneSetup
