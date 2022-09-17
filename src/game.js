@@ -10,17 +10,20 @@ class Game{
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth,window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
-
         // this.cameraControls = new FlyControls(this.camera,this.renderer.domElement);
         // this.cameraControls.dragToLook = true;
         // this.cameraControls.movementSpeed = 10;
         // this.cameraControls.rollSpeed = 0.5;
         // this.commandQueue = new CommandQueue;
-        sceneSetup(this.scene,this.camera,this.renderer.domElement);
+    }
 
+    async init()
+    {
+        await sceneSetup(this.scene,this.camera,this.renderer.domElement);
         this.ship= this.scene.getObjectByName("ship");
         this.oldDir=new THREE.Vector3();
         this.ship.getWorldDirection(this.oldDir);
+        this.meteorites = this.scene.getObjectByName('meteorites')
     }
 
     // const dirLight = new THREE.DirectionalLight(0xffffff,1);
@@ -33,6 +36,7 @@ class Game{
         LastUpdate = now;
         requestAnimationFrame( this.animate.bind(this) );
         this.scene.getObjectByName("ship").controls.update(deltaTime);
+        
         //this.cameraControls.update(deltaTime);
         if(resizeRendererToDisplaySize(this.renderer)){
             const canvas = this.renderer.domElement;
@@ -42,6 +46,9 @@ class Game{
         this.ship.vectorThrust(this.oldDir);
         this.ship.getWorldDirection(this.oldDir);
         this.renderer.render(this.scene,this.camera);
+        this.meteorites.moveAlongAxis('z', .3, -500, 0)
+        this.meteorites.rotateOnAxis('z', .01)
+        
     };
 
 }
@@ -58,6 +65,7 @@ function resizeRendererToDisplaySize(renderer) {
   }
 
 var game = new Game();
+game.init()
 var LastUpdate = Date.now();
 var now = LastUpdate;
 game.animate(0);
