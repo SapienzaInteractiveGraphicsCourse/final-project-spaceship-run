@@ -3,13 +3,25 @@ import MeshObject from "./MeshObject.js";
 import LevelGenerator from "./levelGeneration.js";
 import InstancedMeshObject from "./InstancedMeshObject.js";
 import Ship from "./ship.js";
+import InstancedMeshGroup from "./InstancedMeshGroup.js";
 
-function sceneSetup(scene,camera, domElement){
-    var object = new InstancedMeshObject(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial(),10);
+async function sceneSetup(scene,camera, domElement){
+    /* var object = new InstancedMeshObject(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial(),10);
     object.name = "cube";
-    scene.add(object);
-    //object.loadMesh("../resources/meshes/FinalBaseMesh.obj","obj");
+    scene.add(object); */
     var ship = new Ship(domElement,camera);
+     // METEORITES STUFF
+    var meteorites = new InstancedMeshGroup('meteorites')
+    var promise = await meteorites.load3DModel('/resources/meshes/meteorites/scene.gltf')
+    meteorites.loadMeshAsCube(500, promise, [0,0,-100], 400, 15)
+    meteorites.createBoundingBox()
+    for (let box of meteorites.BBoxArray)
+    {
+        scene.add(box)
+    }
+    scene.add(meteorites) 
+    // METEORITES STUFF 
+
     scene.add(ship);
     const light = new THREE.AmbientLight(0xFFFFFF);
     const dirLight = new THREE.DirectionalLight(0xffffff,0.5);
