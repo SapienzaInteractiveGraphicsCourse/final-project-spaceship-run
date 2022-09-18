@@ -5,6 +5,41 @@
 		<title>Spaceship run</title>
 	</head>
 <body>
+  <div>
+    <div id="checkpointCount">
+      <div id="count">0/0</div>
+      <style>
+        #count {
+          position: absolute;
+          top: 15px;
+          width: 100%;
+          text-align: center;
+          color: white;
+          font-size: 50px;
+        }
+      </style>
+    </div>
+    <div id="winScreen">
+      <!-- <div id="winText">YOU WIN</div>
+      <style>
+        #winText {
+          position: absolute;
+          top: 0px;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          z-index: 100;
+          display:block;
+          color: white;
+          font-size: 100px;
+          background-color: black;
+        }
+      </style> -->
+    </div>
+    <div id="deathScreen">
+      <div id="deathText"></div>
+    </div>
+  </div>
   <script type="importmap">
     {
         "imports":{

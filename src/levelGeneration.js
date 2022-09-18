@@ -1,10 +1,12 @@
 import MeshObject from "./MeshObject.js"
 import * as THREE from "three";
+import GameMaster from "./gameMaster.js";
 
 class LevelGenerator{
-    constructor(scene){
+    constructor(scene, gameMaster){
         if(scene == null) this.level = new THREE.Scene();
         this.level = scene;
+        this.gameMaster = gameMaster;
     }
 
     generateLevel(difficulty){
@@ -36,6 +38,9 @@ class LevelGenerator{
             pos = direction.clone();
             pos.multiplyScalar(checkPointDistance);
         }
+
+        this.gameMaster.CPMax = length;
+        this.gameMaster.updateCPCount();
     }
 }
 

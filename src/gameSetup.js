@@ -4,7 +4,7 @@ import LevelGenerator from "./levelGeneration.js";
 import Ship from "./ship.js";
 import InstancedMeshGroup from "./InstancedMeshGroup.js";
 
-async function sceneSetup(scene,camera, domElement){
+async function sceneSetup(scene,camera, domElement, gameMaster){
     /* var object = new InstancedMeshObject(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial(),10);
     object.name = "cube";
     scene.add(object); */
@@ -27,7 +27,7 @@ async function sceneSetup(scene,camera, domElement){
     dirLight.position.set(1,1,1);
     scene.add(dirLight)
     
-    var level = new LevelGenerator(scene);
+    var level = new LevelGenerator(scene, gameMaster);
     level.generateLevel(5);
     //scene.copy(level.level,true);
     //scene.add(light)

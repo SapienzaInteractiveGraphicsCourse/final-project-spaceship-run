@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import sceneSetup from "./gameSetup.js";
+import GameMaster from "./gameMaster.js";
 
 class Game{
     constructor(){
@@ -10,16 +11,13 @@ class Game{
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setSize(window.innerWidth,window.innerHeight);
         document.body.appendChild(this.renderer.domElement);
-        // this.cameraControls = new FlyControls(this.camera,this.renderer.domElement);
-        // this.cameraControls.dragToLook = true;
-        // this.cameraControls.movementSpeed = 10;
-        // this.cameraControls.rollSpeed = 0.5;
-        // this.commandQueue = new CommandQueue;
+
+        this.gameMaster = new GameMaster();
     }
 
     async init()
     {
-        await sceneSetup(this.scene,this.camera,this.renderer.domElement);
+        await sceneSetup(this.scene,this.camera,this.renderer.domElement,this.gameMaster);
         this.ship= this.scene.getObjectByName("ship");
         this.oldDir=new THREE.Vector3();
         this.ship.getWorldDirection(this.oldDir);
@@ -67,5 +65,4 @@ function resizeRendererToDisplaySize(renderer) {
 var game = new Game();
 game.init()
 var LastUpdate = Date.now();
-var now = LastUpdate;
 game.animate(0);
