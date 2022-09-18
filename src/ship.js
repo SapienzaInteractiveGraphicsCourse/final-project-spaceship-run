@@ -28,21 +28,26 @@ class Ship extends THREE.Object3D{
     }
 
     vectorThrust(oldDir){
+        //oldDir = this.worldToLocal(oldDir)
         var forward = new THREE.Vector3(0,0,1)
         this.getWorldDirection(forward)
-        // const shipQuaternion = new THREE.Quaternion()
-        // this.getWorldQuaternion(shipQuaternion)
-        // oldDir.applyQuaternion(shipQuaternion)
+        var shipMatrix = new THREE.Matrix3()
+        shipMatrix.setFromMatrix4(this.matrixWorld)
+        shipMatrix.invert()
+
+        forward.applyMatrix3(shipMatrix)
+        oldDir.applyMatrix3(shipMatrix)
+
         const leftThruster = this.getObjectByName("thruster_connection_left");
         const rightThruster = this.getObjectByName("thruster_connection_right");
         const shipRotation = this.children[1]
         
         oldDir.sub(forward);
-        oldDir = this.worldToLocal(oldDir)
+        //oldDir = this.worldToLocal(oldDir)
         var vertical = oldDir.y;
         var orizontal = oldDir.x;
         //var angle=oldDir.dot(this.up);
-
+        
         
         const scale = 100;
         shipRotation.setRotationFromAxisAngle(new THREE.Vector3(0,0,1),-orizontal*scale)
