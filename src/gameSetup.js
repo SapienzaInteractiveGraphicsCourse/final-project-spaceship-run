@@ -14,11 +14,11 @@ async function sceneSetup(scene,camera, domElement, gameMaster){
     var promise = await meteorites.load3DModel('/resources/meshes/meteorites/scene.gltf')
     meteorites.loadMeshAsCube(500, promise, [0,0,-100], 400, 15)
     meteorites.createBoundingBox()
-    for (let box of meteorites.BBoxArray)
-    {
-        scene.add(box)
-    }
-    scene.add(meteorites) 
+    // for (let box of meteorites.BBoxArray)
+    // {
+    //     scene.add(box)
+    // }
+    //scene.add(meteorites) 
     // METEORITES STUFF 
 
     scene.add(ship);

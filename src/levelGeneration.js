@@ -21,7 +21,11 @@ class LevelGenerator{
             var checkpoint = new MeshObject();
             //test geometries
             const geometry = new THREE.SphereGeometry(1,32,11);
-            const material = new THREE.MeshStandardMaterial({color:0xffff00});
+            const color = new THREE.Color()
+            color.r = 0;
+            color.g = 0.5;
+            color.b = i/length;
+            const material = new THREE.MeshStandardMaterial({color:color});
             checkpoint.mesh = new THREE.Mesh(geometry,material);
 
             this.level.add(checkpoint);
@@ -30,13 +34,15 @@ class LevelGenerator{
             var newDir = new THREE.Vector3();
             newDir.randomDirection();
             var angle = direction.dot(newDir);
-            while(!(angle<checkpointAngle && angle>=0)){
+            while(angle<checkpointAngle){
                 newDir.randomDirection();
                 angle = direction.dot(newDir);
             }
-            direction.add(newDir);
-            pos = direction.clone();
-            pos.multiplyScalar(checkPointDistance);
+            direction = newDir.clone();
+            var newPos = direction.clone();
+            newPos.multiplyScalar(checkPointDistance);
+            pos.add(newPos);
+            //pos.multiplyScalar(checkPointDistance);
         }
 
         this.gameMaster.CPMax = length;
