@@ -14,11 +14,13 @@ async function sceneSetup(scene,camera, domElement){
     var promise = await meteorites.load3DModel('/resources/meshes/meteorites/scene.gltf')
     meteorites.loadMeshAsCube(500, promise, [0,0,-100], 400, 15)
     meteorites.createBoundingBox()
+    /**
     for (let box of meteorites.BBoxArray)
     {
         scene.add(box)
     }
     scene.add(meteorites) 
+    */
     // METEORITES STUFF 
 
     scene.add(ship);
@@ -31,6 +33,6 @@ async function sceneSetup(scene,camera, domElement){
     level.generateLevel(5);
     //scene.copy(level.level,true);
     //scene.add(light)
-    camera.position.z =0;
+    camera.position.z = 10;
 }
 export default sceneSetup
