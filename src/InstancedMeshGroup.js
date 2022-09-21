@@ -184,7 +184,7 @@ class InstancedMeshGroup extends THREE.Group{
         return parent.BBoxArray
     }
 
-    intersectObject(box3, parent=this)
+    intersectObject(gameMaster, box3, parent=this)
     {        
         var pos =  new THREE.Vector3()
         var initial_quat = new THREE.Quaternion()
@@ -193,6 +193,7 @@ class InstancedMeshGroup extends THREE.Group{
         {
             if (parent.BBoxArray[i].box.intersectsBox(box3)) 
             {
+                /**
                 let index = i //the index at which gettin the matrix of the related intersected mesh
 
                 let intersectMatrix  = new THREE.Matrix4()
@@ -200,6 +201,8 @@ class InstancedMeshGroup extends THREE.Group{
 
                 intersectMatrix.decompose(pos, initial_quat,scale )
                 console.log(pos)
+                */
+                gameMaster.deathScreen()
             }
         }
     }
