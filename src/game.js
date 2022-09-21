@@ -49,6 +49,19 @@ class Game{
         this.meteorites.moveAlongAxis('z', .3, -500, 0)
         this.meteorites.rotateOnAxis('z', .01)
         
+        // Collision detection stuff
+        this.ship.updateBoundingBox(this.ship.matrixWorld)
+        this.meteorites.intersectObject(this.gameMaster, this.ship.helperBox.box)
+
+        for (let mesh of this.checkpoints.children)
+        {
+            if (this.ship.helperBox.box.intersectsBox(mesh.helperBox.box))
+            {
+                this.gameMaster.updateCPCount()
+                mesh.helperBox.box.makeEmpty()
+            }
+        }
+        
     };
 
 }
