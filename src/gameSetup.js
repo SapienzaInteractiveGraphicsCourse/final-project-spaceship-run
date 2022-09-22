@@ -9,7 +9,7 @@ async function sceneSetup(scene,camera, domElement, gameMaster){
     object.name = "cube";
     scene.add(object); */
     var ship = new Ship(domElement,camera);
-
+    scene.add(ship);
     //#region meteorites
      // METEORITES STUFF
     var meteorites = new InstancedMeshGroup('meteorites')
@@ -35,10 +35,11 @@ async function sceneSetup(scene,camera, domElement, gameMaster){
     //skybox
     //#endregion
     
-    scene.add(ship);
-    const light = new THREE.AmbientLight(0xFFFFFF);
+
+
     const dirLight = new THREE.DirectionalLight(0xffffff,0.5);
     dirLight.position.set(-1,0,0);
+    dirLight.intensity = 5;
     scene.add(dirLight)
     
     var level = new LevelGenerator(scene, gameMaster);
