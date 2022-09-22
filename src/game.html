@@ -1,32 +1,87 @@
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
+    <style>
+        h1{text-align: center; font-size: xx-large;}
+        p {text-align: left; font-size: large; font-weight: 900;}
+    </style>
 		<meta charset="utf-8">
 		<title>Spaceship run</title>
+    <link rel="stylesheet"  href="game.css">
 	</head>
+
 <body>
+
+ 
+
+  <div id="initialScreen"   class='screen'  style = "display:block"> 
+  
+   <p>
+    The game goal is to navigate in the space passing through the rings while avoiding asteroids. 
+    The difficulty will affect the number and the velocity of the asteroids! 
+   </p> 
+    <button onclick="startGame('easy')">Easy </button>
+    <button onclick="startGame('medium')">Medium </button>
+    <button onclick="startGame('hard')">Hard </button>
+  </div>
+
+  <div id="deathScreen"   class='screen'  style = "display:none"> 
+    <h1>
+     Game over
+    </h1> 
+     <button onclick="restartGame('easy')">Easy </button>
+     <button onclick="restartGame('medium')">Medium </button>
+     <button onclick="restartGame('hard')">Hard </button>
+   </div>
+   
+   <div id="winScreen"   class='screen'  style = "display:none"> 
+    <h1>
+     You won!
+    </h1> 
+   </div>
+
+  <div>
+    <div id="checkpointCount">
+      <div id="count">0/10</div>
+      <style>
+        #count {
+          position: absolute;
+          top: 15px;
+          width: 1%;
+          text-align: center;
+          color: white;
+          font-size: 50px;
+        }
+      </style>
+    </div>
+    <div id="winScreen">
   <script type="importmap">
     {
         "imports":{
             "three": "https://unpkg.com/three@0.138.0/build/three.module.js",
             "OBJLoader":"https://unpkg.com/three@0.138.0/examples/jsm/loaders/OBJLoader.js",
             "GLTFLoader":"https://unpkg.com/three@0.138.0/examples/jsm/loaders/GLTFLoader.js",
-            "FlyControls":"https://unpkg.com/three@0.138.0/examples/jsm/controls/FlyControls.js"
+            "FlyControls":"https://unpkg.com/three@0.138.0/examples/jsm/controls/FlyControls.js",
+            "DDSLoader":"https://unpkg.com/three@0.138.0/examples/jsm/loaders/DDSLoader.js"
         }
     }
   </script>
   <script type="module" src="game.js"></script>
+
+
+ 
 </body>
 </html>
 
 <style>
-html, body {
-   margin: 0;
-   height: 100%;
-}
-#c {
-   width: 100%;
-   height: 100%;
-   display: block;
-}
-</style>
+  html, body {
+     margin: 0;
+     height: 100%;
+  }
+  #c {
+     width: 50%;
+     height: 50%;
+     display: block;
+  }
+  </style>
