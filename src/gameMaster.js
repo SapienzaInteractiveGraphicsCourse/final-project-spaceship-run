@@ -1,49 +1,52 @@
 import * as THREE from "three";
 class GameMaster extends THREE.Object3D{
-    constructor(){
+    constructor(game){
         super()
-
+        this.game = game
         this.checkpointcount = -1;
         this.CPMax = 0;
+        //this.window.startGame = startGame
+ 
 
     }
+    // Function to toggle between screens
+     toggleScreen(id,toggle){
+        let element = document.getElementById(id)
+        let display = (toggle) ? 'block' : 'none'
+        // canvas of the renderer
+        if (element == null)
+        {
+            this.game.renderer.domElement.style.display = display
+        }
+        else element.style.display = display
+    }
 
-    /**
-     * show death screen
-     */
-    deathScreen(){
-        const win = document.createElement("div")
-        win.innerText = "YOU LOSE";     
-        win.style.position = "absolute";
-        win.style.top= "0px";
-        win.style.width= "100%";
-        win.style.height= "100%";
-        win.style.textAlign= "center";
-        win.style.zIndex= "100";
-        win.style.display="block";
-        win.style.color= "white";
-        win.style.fontSize= "100px";
-        win.style.backgroundColor= "black";
-        document.getElementById("deathScreen").appendChild(win) 
+    gameScreen(difficulty){
+        this.toggleScreen('deathScreen', false)
+        this.toggleScreen('initialScreen', false)
+        this.toggleScreen('winScreen', false)
+        this.toggleScreen('canvas', true)
+        this.game.init(difficulty, this)
+        this.game.animate(0);
+    }
+
+
+    loseScreen(){
+        this.toggleScreen('initialScreen', false)
+        this.toggleScreen('canvas', false)
+        this.toggleScreen('deathScreen', true)
+        clearInterval(this.game.animate)
     }
 
     /**
      * show win screen
      */
     winScreen(){
-        const win = document.createElement("div")
-        win.innerText = "YOU WIN";     
-        win.style.position = "absolute";
-        win.style.top= "0px";
-        win.style.width= "100%";
-        win.style.height= "100%";
-        win.style.textAlign= "center";
-        win.style.zIndex= "100";
-        win.style.display="block";
-        win.style.color= "white";
-        win.style.fontSize= "100px";
-        win.style.backgroundColor= "black";
-        document.getElementById("winScreen").appendChild(win) 
+        this.toggleScreen('initialScreen', false)
+        this.toggleScreen('canvas', false)
+        this.toggleScreen('deathScreen', false)
+        this.toggleScreen('winScreen', true)
+        clearInterval(this.game.animate)
     }
 
     /**

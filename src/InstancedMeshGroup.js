@@ -47,6 +47,7 @@ class InstancedMeshGroup extends THREE.Group{
                 {
                     if (child.isMesh)
                         {
+                        child.material.side = THREE.DoubleSide // An attempt to fix the hole in the meteorites
                         var instancedMesh = new THREE.InstancedMesh( child.geometry, child.material, count );
                         //instancedMesh.scale.set(scale,scale,scale)
                         var matrix = new THREE.Matrix4()
@@ -184,7 +185,7 @@ class InstancedMeshGroup extends THREE.Group{
         return parent.BBoxArray
     }
 
-    intersectObject(box3, parent=this)
+    intersectObject(gameMaster, box3, parent=this)
     {        
         var pos =  new THREE.Vector3()
         var initial_quat = new THREE.Quaternion()
@@ -193,15 +194,17 @@ class InstancedMeshGroup extends THREE.Group{
         {
             if (parent.BBoxArray[i].box.intersectsBox(box3)) 
             {
-                let index = i //the index at which gettin the matrix of the related intersected mesh
+                /* let index = i //the index at which gettin the matrix of the related intersected mesh
 
                 let intersectMatrix  = new THREE.Matrix4()
                 parent.children[0].getMatrixAt(i, intersectMatrix)
 
                 intersectMatrix.decompose(pos, initial_quat,scale )
-                console.log(pos)
+                console.log(pos) */
+                gameMaster.loseScreen()
             }
         }
+        
     }
 }
 

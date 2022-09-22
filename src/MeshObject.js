@@ -27,6 +27,16 @@ class MeshObject extends GameObject{
             }
         )
     }
+    createBoundingBox(x=2,y=2,z=2, parent=this)
+    {
+        parent.boxGeometry = new THREE.Box3();
+        parent.boxGeometry.setFromCenterAndSize(this.position, new THREE.Vector3( x, y, z ) );
+
+        parent.helperBox = new THREE.Box3Helper(parent.boxGeometry)
+        
+        
+        return parent.helperBox
+    }
 }
 
 export default MeshObject;

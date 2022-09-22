@@ -4,22 +4,40 @@ import LevelGenerator from "./levelGeneration.js";
 import Ship from "./ship.js";
 import InstancedMeshGroup from "./InstancedMeshGroup.js";
 
-async function sceneSetup(scene,camera, domElement, gameMaster){
-    /* var object = new InstancedMeshObject(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial(),10);
-    object.name = "cube";
-    scene.add(object); */
+async function sceneSetup(scene,camera, domElement, gameMaster, difficulty){
+
     var ship = new Ship(domElement,camera);
-    scene.add(ship);
+    ship.position.y=2.5
+    let helper = ship.createBoundingBox()
+    scene.userData.meteorites_number;
+    scene.userData.meteorites_velocity;
+    //scene.add(helper)
     //#region meteorites
      // METEORITES STUFF
+    if (difficulty=='easy')
+    {
+        scene.userData.meteorites_number = 200
+        scene.userData.meteorites_velocity = .4
+    }
+    if (difficulty=='medium')
+    {
+        scene.userData.meteorites_number = 350
+        scene.userData.meteorites_velocity = .6
+    }
+    if (difficulty=='hard')
+    {
+        scene.userData.meteorites_number = 600
+        scene.userData.meteorites_velocity = .8
+    }
+
     var meteorites = new InstancedMeshGroup('meteorites')
     var promise = await meteorites.load3DModel('/resources/meshes/meteorites/scene.gltf')
-    meteorites.loadMeshAsCube(500, promise, [0,0,-100], 400, 15)
+    meteorites.loadMeshAsCube(scene.userData.meteorites_number, promise, [0,0,-300], 400, 20)
     meteorites.createBoundingBox()
-    // for (let box of meteorites.BBoxArray)
-    // {
-    //     scene.add(box)
-    // }
+    /*  for (let box of meteorites.BBoxArray)
+     {
+         scene.add(box)
+     } */
     scene.add(meteorites) 
     // METEORITES STUFF 
     //#endregion
@@ -44,9 +62,10 @@ async function sceneSetup(scene,camera, domElement, gameMaster){
     
     var level = new LevelGenerator(scene, gameMaster);
     level.generateLevel(5);
-    //scene.copy(level.level,true);
-    //scene.add(light)
+
     camera.position.z =0;
+
+    
 }
 
     
