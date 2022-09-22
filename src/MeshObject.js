@@ -1,8 +1,6 @@
 import * as THREE from "three";
-import {OBJLoader} from 'OBJLoader'
 import {GLTFLoader} from 'GLTFLoader'
-import GameObject from "./GameObject.js";
-class MeshObject extends GameObject{
+class MeshObject extends THREE.Object3D{
     constructor(){
         super();
         this._mesh;

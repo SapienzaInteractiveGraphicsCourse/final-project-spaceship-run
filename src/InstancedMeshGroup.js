@@ -1,7 +1,6 @@
 import * as THREE from "three";
 import {GLTFLoader} from 'GLTFLoader'
 import {sampleCubePosition, getRandomArbitrary} from "./utils.js"
-import sceneSetup from "./gameSetup.js";
 
 
 class InstancedMeshGroup extends THREE.Group{

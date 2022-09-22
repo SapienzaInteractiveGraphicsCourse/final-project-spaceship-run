@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import MeshObject from "./MeshObject.js";
 import LevelGenerator from "./levelGeneration.js";
 import Ship from "./ship.js";
 import InstancedMeshGroup from "./InstancedMeshGroup.js";

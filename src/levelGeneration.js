@@ -1,6 +1,5 @@
 import MeshObject from "./MeshObject.js"
 import * as THREE from "three";
-import GameMaster from "./gameMaster.js";
 import { DDSLoader } from 'DDSLoader'
 
 class LevelGenerator{
