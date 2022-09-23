@@ -53,6 +53,10 @@ async function sceneSetup(scene,camera, domElement, gameMaster, difficulty){
     //#endregion
     
     scene.add(ship);
+    //lights
+    const pointLight = new THREE.PointLight(0xffffff, 1)
+    pointLight.position.z = 0
+    scene.add(pointLight)
     const light = new THREE.AmbientLight(0xFFFFFF);
     const dirLight = new THREE.DirectionalLight(0xffffff,0.5);
     dirLight.position.set(1,10,-10);
