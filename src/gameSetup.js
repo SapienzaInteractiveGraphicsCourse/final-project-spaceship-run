@@ -55,7 +55,7 @@ async function sceneSetup(scene,camera, domElement, gameMaster, difficulty){
     scene.add(ship);
     const light = new THREE.AmbientLight(0xFFFFFF);
     const dirLight = new THREE.DirectionalLight(0xffffff,0.5);
-    dirLight.position.set(-1,0,0);
+    dirLight.position.set(1,10,-10);
     scene.add(dirLight)
     
     var level = new LevelGenerator(scene, gameMaster);
