@@ -55,9 +55,8 @@ async function sceneSetup(scene,camera, domElement, gameMaster, difficulty){
     scene.add(ship);
     //lights
     const pointLight = new THREE.PointLight(0xffffff, 1)
-    pointLight.position.z = 0
+    pointLight.position.x = 10000000000 // This high value is needed to mimic the position of the 'sun' in the skybox
     scene.add(pointLight)
-    const light = new THREE.AmbientLight(0xFFFFFF);
     const dirLight = new THREE.DirectionalLight(0xffffff,0.5);
     dirLight.position.set(1,10,-10);
     scene.add(dirLight)
