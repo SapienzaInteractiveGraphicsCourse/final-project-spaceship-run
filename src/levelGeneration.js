@@ -24,7 +24,7 @@ class LevelGenerator{
 
         //Rings texture
         const loader = new DDSLoader();
-        const map4 = loader.load( '/resources/textures/explosion_dxt5_mip.dds');
+        const map4 = loader.load( '../resources/textures/explosion_dxt5_mip.dds');
 		
         const material= new THREE.MeshBasicMaterial( { map: map4,  blending: THREE.AdditiveBlending, depthTest: true, transparent: true} );
         material.side = THREE.DoubleSide
