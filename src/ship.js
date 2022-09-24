@@ -22,7 +22,7 @@ class Ship extends THREE.Object3D{
         this.controls.dragToLook = true;
         this.controls.movementSpeed = 50;
         this.controls.rollSpeed = 0.5;
-        this.controls.autoForward = false;
+        this.controls.autoForward = true;
 
         this.add(this.camera)
         this.add(this.shipModel)
