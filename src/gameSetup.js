@@ -30,7 +30,7 @@ async function sceneSetup(scene,camera, domElement, gameMaster, difficulty){
     }
 
     var meteorites = new InstancedMeshGroup('meteorites')
-    var promise = await meteorites.load3DModel('/resources/meshes/meteorites/scene.gltf')
+    var promise = await meteorites.load3DModel('../resources/meshes/meteorites/scene.gltf')
     meteorites.loadMeshAsCube(scene.userData.meteorites_number, promise, [0,0,-300], 400, 20)
     meteorites.createBoundingBox()
     /*  for (let box of meteorites.BBoxArray)
