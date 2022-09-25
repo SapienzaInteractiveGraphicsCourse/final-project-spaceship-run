@@ -9,30 +9,49 @@ body {
     font-family: Arial;
 }
 
-p
+#p1
 {
     position: absolute;
-    text-align: center;
-    vertical-align: baseline;
-    text-transform: transformY(50%);
+    left: 700px;
+    top:-50px;
+    text-align: left;
     font-size: 0.975em; /* 14px/16=0.875em */
     color: #eef8f8e8;
     margin-top: -5cm;
-    margin-left: -19cm;
+    margin-left: -30cm;
 }
 
-h1
+#p2 
+{
+    position: absolute;
+    left: 850px;
+    top:600px;
+    text-align: center;
+    font-size: 0.875em; /* 14px/16=0.875em */
+    color: #910e19e8;
+    margin-top: -5cm;
+    margin-left: -30cm;
+}
+#death
 {
 position: absolute;
-margin-top: -8cm;
+margin-left: -1.5cm;
 font-size: 1.975em;
 color: brown;
 text-align: center;
 }
 
+#win
+{
+position: absolute;
+margin-left: -1.3cm;
+font-size: 1.975em;
+color: rgb(23, 138, 13);
+text-align: center;
+}
+
 button {
     top: 50%;
-    text_align: center;
     appearance:none;
     outline:none;
     display:inline-block;
