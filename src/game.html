@@ -2,10 +2,6 @@
 
 <html lang="en">
     <head>
-    <style>
-        h1{text-align: center; font-size: xx-large;}
-        p {text-align: left; font-size: large; font-weight: 900;}
-    </style>
 		<meta charset="utf-8">
 		<title>Spaceship run</title>
     <link rel="stylesheet"  href="game.css">
@@ -13,13 +9,13 @@
 
 <body>
 
- 
-
-  <div id="initialScreen"   class='screen'  style = "display:block"> 
-  
-   <p>
+   <div id="initialScreen"   class='screen'  style = "display:block">   
+   <p id='p1'> 
     The game goal is to navigate in the space passing through the rings while avoiding asteroids. 
     The difficulty will affect the number and the velocity of the asteroids! 
+   </p> 
+   <p id='p2'> 
+    Press W and drag the cursor to move the ship
    </p> 
     <button onclick="startGame('easy')">Easy </button>
     <button onclick="startGame('medium')">Medium </button>
@@ -27,16 +23,18 @@
   </div>
 
   <div id="deathScreen"   class='screen'  style = "display:none"> 
-    <h1>
-     Game over
+    <h1 id="death">
+      <nobr>Game over</nobr>
     </h1> 
    </div>
    
    <div id="winScreen"   class='screen'  style = "display:none"> 
-    <h1>
-     You won!
+    
+    <h1 id="win">
+      <nobr>You won!</nobr>
     </h1> 
    </div>
+
 
   <div>
     <div id="checkpointCount">
