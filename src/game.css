@@ -31,6 +31,7 @@ text-align: center;
 }
 
 button {
+    top: 50%;
     text_align: center;
     appearance:none;
     outline:none;
