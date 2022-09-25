@@ -11,12 +11,14 @@ body {
 
 p
 {
+    position: absolute;
+    text-align: center;
+    vertical-align: baseline;
+    text-transform: transformY(50%);
     font-size: 0.975em; /* 14px/16=0.875em */
     color: #eef8f8e8;
-    position: absolute;
     margin-top: -5cm;
     margin-left: -19cm;
-    text-align: left;
 }
 
 h1
