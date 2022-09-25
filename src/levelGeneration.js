@@ -10,7 +10,7 @@ class LevelGenerator{
     }
 
     generateLevel(difficulty){
-        const length = randomLength(difficulty*2,difficulty*2+2);
+        const length = 10;
         const checkPointDistance = 100;
         const checkpointAngle = Math.cos(degreeToRad(11));
 
