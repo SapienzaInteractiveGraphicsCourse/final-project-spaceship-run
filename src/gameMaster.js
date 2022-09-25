@@ -6,6 +6,7 @@ class GameMaster extends THREE.Object3D{
         this.checkpointcount = -1;
         this.CPMax = 0;
         //this.window.startGame = startGame
+        this.stopGame = true
  
 
     }
@@ -36,6 +37,7 @@ class GameMaster extends THREE.Object3D{
         this.toggleScreen('canvas', false)
         this.toggleScreen('deathScreen', true)
         clearInterval(this.game.animate)
+        this.stopGame=false
     }
 
     /**
@@ -47,6 +49,7 @@ class GameMaster extends THREE.Object3D{
         this.toggleScreen('deathScreen', false)
         this.toggleScreen('winScreen', true)
         clearInterval(this.game.animate)
+        this.stopGame = false
     }
 
     /**
