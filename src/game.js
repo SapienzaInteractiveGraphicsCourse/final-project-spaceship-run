@@ -50,6 +50,8 @@ class Game{
         this.meteorites.rotateOnAxis('z', .01)
         
         // Collision detection stuff
+        if (this.gameMaster.stopGame)
+        {
         this.ship.updateBoundingBox(this.ship.matrixWorld)
         this.meteorites.intersectObject(this.gameMaster, this.ship.helperBox.box)
         for (let mesh of this.checkpoints.children)
@@ -60,6 +62,7 @@ class Game{
                 mesh.helperBox.box.makeEmpty()
             }
         } 
+        }
     };
 
 }
